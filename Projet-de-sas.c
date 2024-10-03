@@ -247,6 +247,8 @@ void rechercheN(){
 
 
 
+
+
 int main() {
     do {
         saiser();
@@ -294,6 +296,7 @@ int main() {
 
                 break;
             case 6:
+                moyenf();
 
                 break;
             case 7:
