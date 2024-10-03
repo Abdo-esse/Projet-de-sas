@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int choix, i, choix2, choix3, n;
+int choix, i, choix2, choix3, n,trouve;
 int reference = 0;
 int x = 0;
 
@@ -53,9 +53,9 @@ void reservation() {
     }
 
     printf("Entrer votre nom: ");
-    scanf(" %[^\n]", p[x].nom);
+    scanf(" %[^\n]s",&p[x].nom);
     printf("Entrer votre prenom: ");
-    scanf(" %[^\n]", p[x].prenom);
+    scanf(" %[^\n]s",&p[x].prenom);
     printf("Entrer votre N de telephon: ");
     scanf("%d", &p[x].telephone);
     printf("Entrer l'annee: ");
@@ -65,7 +65,7 @@ void reservation() {
     printf("Entrer le jour: ");
     scanf("%d", &p[x].date.jours);
      printf("Entrer le statu \n valide \n reporte \n annule \n traite\n==>: ");
-    scanf(" %[^\n]s", p[x].statut);
+    scanf(" %[^\n]s",&p[x].statut);
 
     p[x].reference = x + 1;
     x++;
@@ -79,6 +79,9 @@ void afficher() {
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
         printf("Votre statut: \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
+    }
+     if (!x) {
+        printf("N'existe pas aucan resirvstion\n");
     }
 }
 
@@ -105,19 +108,19 @@ void modifier() {
                 case 1:
                     printf("Votre dernier nom: %s\n", p[i].nom);
                     printf("Entrer la nouvelle nom: ");
-                    scanf(" %[^\n]", dm.nom);
-                    strcpy(p[i].nom, dm.nom);
+                    scanf(" %[^\n]s",&dm.nom);
+                    strcpy(p[i].nom,dm.nom);
                     break;
                 case 2:
                     printf("Votre dernier prenom: %s\n", p[i].prenom);
                     printf("Entrer la nouvelle prenom: ");
-                    scanf(" %[^\n]", dm.prenom);
+                    scanf(" %[^\n]s",&dm.prenom);
                     strcpy(p[i].prenom, dm.prenom);
                     break;
                 case 3:
                     printf("Votre dernier N tele: %d\n", p[i].telephone);
                     printf("Entrer la nouvelle N tele: ");
-                    scanf("%d", &dm.telephone);
+                    scanf("%d",&dm.telephone);
                     p[i].telephone = dm.telephone;
                     break;
                 case 4:
@@ -134,7 +137,7 @@ void modifier() {
                 case 5:
                     printf("Votre dernier statut est : %s\n", p[i].statut);
                     printf("Entrer votre statut: valide \n reporte \n annule \n traite\n==>");
-                    scanf(" %[^\n]s", dm.statut);
+                    scanf(" %[^\n]s",&dm.statut);
                     strcpy(p[i].statut, dm.statut);
                     break;
                 case 6:
@@ -149,8 +152,29 @@ void modifier() {
     }
 
     if (!trouve1) {
-        printf("Référence non trouvée\n");
+        printf("Ref3rence non trouvee\n");
     }
+}
+
+void supreme(){
+    printf("Entrer votre reference : ");
+    scanf("%d", &n);
+    trouve = 0;
+
+    for (i=0;i<x;i++){
+        if(n==p[i].reference)
+            printf("supej");
+            trouve=1;
+         for(int j=0;j<x-1;j++){
+            p[j]=p[j+1];
+             }
+        x--;
+
+    }
+    if (!trouve) {
+        printf("Reference non trouvee\n");
+
+}
 }
 
 int main() {
@@ -170,7 +194,7 @@ int main() {
                         modifier();
                         break;
                     case 2:
-                        printf("Fonction de suppression non implémentée.\n");
+                       supreme();
                         break;
                 }
                 break;
@@ -196,3 +220,4 @@ int main() {
 
     return 0;
 }
+
