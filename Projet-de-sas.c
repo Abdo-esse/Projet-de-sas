@@ -59,6 +59,8 @@ void reservation() {
     scanf(" %[^\n]s",&p[x].prenom);
     printf("Entrer votre N de telephon: ");
     scanf("%d", &p[x].telephone);
+    printf("Entrer votre age: ");
+    scanf("%d", &p[x].age);
     printf("Entrer l'annee: ");
     scanf("%d", &p[x].date.annee);
     printf("Entrer le mois: ");
@@ -77,6 +79,7 @@ void afficher() {
         printf("Votre nom: %s\n", p[i].nom);
         printf("Votre prenom: %s\n", p[i].prenom);
         printf("Votre N de telephon: %d\n", p[i].telephone);
+        printf("Votre age est: %d\n", p[i].age);
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
         printf("Votre statut: %s \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
@@ -98,9 +101,10 @@ void modifier() {
             printf("1-votre nom \n");
             printf("2-votre prenom\n");
             printf("3-votre N de telephon \n");
-            printf("4-la date de votre reservation \n");
-            printf("5-Statut \n");
-            printf("6-Quiter\n");
+            printf("4-votre age \n");
+            printf("5-la date de votre reservation \n");
+            printf("6-Statut \n");
+            printf("7-Quiter\n");
             printf("Choix nombre du menu : ");
             scanf("%d", &choix2);
             trouveM = 1;
@@ -128,6 +132,13 @@ void modifier() {
                      printf("La reservation a ete modifier.\n");
                     break;
                 case 4:
+                    printf("Votre dernier age: %d\n", p[i].age);
+                    printf("Entrer la nouvelle age: ");
+                    scanf("%d",&dm.age);
+                    p[i].age = dm.age;
+                     printf("La reservation a ete modifier.\n");
+                    break;
+                case 5:
                     printf("Votre dernier date: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
                     printf("Entrer la nouvelle date:\n");
                     printf("L'anne: ");
@@ -139,14 +150,14 @@ void modifier() {
                     p[i].date = dm.date;
                      printf("La reservation a ete modifier.\n");
                     break;
-                case 5:
+                case 6:
                     printf("Votre dernier statut est : %s\n", p[i].statut);
                     printf("Entrer votre statut: valide \n reporte \n annule \n traite\n==>");
                     scanf(" %[^\n]s",&dm.statut);
                     strcpy(p[i].statut, dm.statut);
                     printf("La reservation a ete modifier.\n");
                     break;
-                case 6:
+                case 7:
                     printf("Good bye\n");
                     return;
                 default:
@@ -194,6 +205,7 @@ void rechercheR(){
         printf("Votre nom: %s\n", p[i].nom);
         printf("Votre prenom: %s\n", p[i].prenom);
         printf("Votre N de telephon: %d\n", p[i].telephone);
+        printf("Votre age : %d\n", p[i].age);
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
         printf("Votre statut: %s \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
@@ -218,6 +230,7 @@ void rechercheN(){
         printf("Votre nom: %s\n", p[i].nom);
         printf("Votre prenom: %s\n", p[i].prenom);
         printf("Votre N de telephon: %d\n", p[i].telephone);
+        printf("Votre age : %d\n", p[i].age);
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
         printf("Votre statut: %s \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
@@ -231,6 +244,7 @@ void rechercheN(){
      }
 
 }
+
 
 
 int main() {
@@ -262,7 +276,7 @@ int main() {
                 break;
             case 5:
                 printf("1-Recherche par referenc.\n");
-                printf("2-Rrecherche par nom.\n");
+                printf("2-Rrecherche par nome\n");
                 printf("Choix nombre du menu : ");
                 scanf("%d", &choix4);
                 switch (choix4){
@@ -273,14 +287,14 @@ int main() {
                       rechercheN();
                       break;
                   default:
-                      printf("Erreur,votre choix n'existe pas \n");
+                      printf("Erreur,votre choix n'existe pas");
                       break;
 
                 }
 
                 break;
             case 6:
-                printf("Fonction de statistiques non implémentée.\n");
+
                 break;
             case 7:
                 printf("Quitter le programme\n");
@@ -292,4 +306,3 @@ int main() {
 
     return 0;
 }
-
