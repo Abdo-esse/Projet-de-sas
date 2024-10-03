@@ -37,7 +37,7 @@ data p[100];
 void saiser() {
     printf("1-Ajouter une reservation\n");
     printf("2-Modifier ou supprimer une reservation\n");
-    printf("3-Afficher les details d'une reservation\n");
+    printf("3-Afficher les détails d'une reservation\n");
     printf("4-Tri des reservations\n");
     printf("5-Recherche des reservations\n");
     printf("6-Statistiques\n");
@@ -58,13 +58,14 @@ void reservation() {
     scanf(" %[^\n]", p[x].prenom);
     printf("Entrer votre N de telephon: ");
     scanf("%d", &p[x].telephone);
-    printf("Entrer la date:")
     printf("Entrer l'annee: ");
     scanf("%d", &p[x].date.annee);
     printf("Entrer le mois: ");
     scanf("%d", &p[x].date.mois);
     printf("Entrer le jour: ");
     scanf("%d", &p[x].date.jours);
+     printf("Entrer le statu \n valide \n reporte \n annule \n traite\n==>: ");
+    scanf(" %[^\n]s", p[x].statut);
 
     p[x].reference = x + 1;
     x++;
@@ -76,7 +77,7 @@ void afficher() {
         printf("Votre prenom: %s\n", p[i].prenom);
         printf("Votre N de telephon: %d\n", p[i].telephone);
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
-        printf("Statut: %s\n", p[i].statut);
+        printf("Votre statut: \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
     }
 }
@@ -132,8 +133,8 @@ void modifier() {
                     break;
                 case 5:
                     printf("Votre dernier statut est : %s\n", p[i].statut);
-                    printf("Entrer votre statut:\n valide \n reporte \n annule \n traite\n==>");
-                    scanf(" %[^\n]", dm.statut);
+                    printf("Entrer votre statut: valide \n reporte \n annule \n traite\n==>");
+                    scanf(" %[^\n]s", dm.statut);
                     strcpy(p[i].statut, dm.statut);
                     break;
                 case 6:
@@ -148,7 +149,7 @@ void modifier() {
     }
 
     if (!trouve1) {
-        printf("Refrence non trouvée\n");
+        printf("Référence non trouvée\n");
     }
 }
 
