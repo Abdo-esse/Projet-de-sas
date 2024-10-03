@@ -53,19 +53,18 @@ void reservation(){
     break;
     }
 }
+
 void afficher(){
     for( i=0;i<100;i++){
-    printf(" votre nom:%s ",p[i].nom);
-    printf(" votre prenom: %s",p[i].prenom);
-    printf(" votre N de telephon: %d",p[i].telephone);
+    printf(" votre nom:%s \n",p[i].nom);
+    printf(" votre prenom: %s\n",p[i].prenom);
+    printf(" votre N de telephon: %d\n",p[i].telephone);
     printf(" la date de votre reservation : ");
-    printf(" %d \\ %d \\ %d ",p[i].date.jours,p[i].date.mois,p[i].date.annee);
-    printf("Statut : valide");
-    printf(" le reference :%d ",x);
+    printf(" %d \\ %d \\ %d \n",p[i].date.jours,p[i].date.mois,p[i].date.annee);
+    printf(" le reference :%d \n",x);
     break;
     }
-
-
+}
 
 
 int main(){
@@ -80,7 +79,6 @@ int main(){
             break;
         case 3:
             afficher();
-
             break;
         case 4:
             printf("en cour de modiffier");
@@ -104,5 +102,4 @@ int main(){
 
 
     return 0;
-
 }
