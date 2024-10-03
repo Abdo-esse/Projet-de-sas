@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-int choix, i, choix2, choix3, n,trouve;
+int choix, i, choix2, choix3, n,trouveS,trouveR;
 int reference = 0;
 int x = 0;
+char nomR[50];
 
 typedef struct {
     int jours;
@@ -49,7 +50,7 @@ void saiser() {
 void reservation() {
     if (x >= 100) {
         printf("Limite de réservations atteinte.\n");
-        return;
+
     }
 
     printf("Entrer votre nom: ");
@@ -77,7 +78,7 @@ void afficher() {
         printf("Votre prenom: %s\n", p[i].prenom);
         printf("Votre N de telephon: %d\n", p[i].telephone);
         printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
-        printf("Votre statut: \n",p[i].statut);
+        printf("Votre statut: %s \n",p[i].statut);
         printf("Reference: %d\n", p[i].reference);
     }
      if (!x) {
@@ -89,7 +90,7 @@ void modifier() {
     data_modifie dm;
     printf("Entrer votre reference : ");
     scanf("%d", &n);
-    int trouve1 = 0;
+    int trouveM = 0;
 
     for (i = 0; i < x; i++) {
         if (n == p[i].reference) {
@@ -102,7 +103,7 @@ void modifier() {
             printf("6-Quiter\n");
             printf("Choix nombre du menu : ");
             scanf("%d", &choix2);
-            trouve1 = 1;
+            trouveM = 1;
 
             switch (choix2) {
                 case 1:
@@ -110,18 +111,21 @@ void modifier() {
                     printf("Entrer la nouvelle nom: ");
                     scanf(" %[^\n]s",&dm.nom);
                     strcpy(p[i].nom,dm.nom);
+                     printf("La reservation a ete modifier.\n");
                     break;
                 case 2:
                     printf("Votre dernier prenom: %s\n", p[i].prenom);
                     printf("Entrer la nouvelle prenom: ");
                     scanf(" %[^\n]s",&dm.prenom);
                     strcpy(p[i].prenom, dm.prenom);
+                     printf("La reservation a ete modifier.\n");
                     break;
                 case 3:
                     printf("Votre dernier N tele: %d\n", p[i].telephone);
                     printf("Entrer la nouvelle N tele: ");
                     scanf("%d",&dm.telephone);
                     p[i].telephone = dm.telephone;
+                     printf("La reservation a ete modifier.\n");
                     break;
                 case 4:
                     printf("Votre dernier date: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
@@ -133,12 +137,14 @@ void modifier() {
                     printf("Le jour: ");
                     scanf("%d", &dm.date.jours);
                     p[i].date = dm.date;
+                     printf("La reservation a ete modifier.\n");
                     break;
                 case 5:
                     printf("Votre dernier statut est : %s\n", p[i].statut);
                     printf("Entrer votre statut: valide \n reporte \n annule \n traite\n==>");
                     scanf(" %[^\n]s",&dm.statut);
                     strcpy(p[i].statut, dm.statut);
+                    printf("La reservation a ete modifier.\n");
                     break;
                 case 6:
                     printf("Good bye\n");
@@ -151,31 +157,55 @@ void modifier() {
         }
     }
 
-    if (!trouve1) {
-        printf("Ref3rence non trouvee\n");
+    if (!trouveM) {
+        printf("Reference non trouvee\n");
     }
 }
 
 void supreme(){
     printf("Entrer votre reference : ");
     scanf("%d", &n);
-    trouve = 0;
+    trouveS = 0;
 
     for (i=0;i<x;i++){
         if(n==p[i].reference)
             printf("supej");
-            trouve=1;
+            trouveS=1;
          for(int j=0;j<x-1;j++){
             p[j]=p[j+1];
              }
         x--;
+        printf("La reservation a ete supprime.\n");
+
+
 
     }
-    if (!trouve) {
+    if (!trouveS) {
         printf("Reference non trouvee\n");
 
 }
 }
+void rechercheR(){
+    printf("Entrer votre reference : ");
+    scanf("%d", &n);
+    trouveR = 0;
+    for(i=0;i<x;i++){
+         if (p[i].reference==n){
+        printf("Votre nom: %s\n", p[i].nom);
+        printf("Votre prenom: %s\n", p[i].prenom);
+        printf("Votre N de telephon: %d\n", p[i].telephone);
+        printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
+        printf("Votre statut: %s \n",p[i].statut);
+        printf("Reference: %d\n", p[i].reference);
+        trouveR=1;
+        break;
+    }
+
+    }
+
+
+}
+
 
 int main() {
     do {
@@ -205,7 +235,7 @@ int main() {
                 printf("Fonction de tri non implémentée.\n");
                 break;
             case 5:
-                printf("Fonction de recherche non implémentée.\n");
+                rechercheR();
                 break;
             case 6:
                 printf("Fonction de statistiques non implémentée.\n");
