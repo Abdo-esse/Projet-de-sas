@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int choix, i, choix2, choix3, n,trouveS,trouveR;
+int choix, i, choix2, choix3, n,trouveS,trouveR,choix4;
 int reference = 0;
 int x = 0;
 char nomR[50];
@@ -201,8 +201,34 @@ void rechercheR(){
         break;
     }
 
+
+}
+      if (!trouveR) {
+        printf("Reference non trouvee\n");
+      }
+
+
+}
+void rechercheN(){
+     printf("Entrer le nom : ");
+    scanf("%s",nomR);
+    trouveR = 0;
+    for(i=0;i<x;i++){
+         if(strcmp(p[i].nom,nomR)==0){
+        printf("Votre nom: %s\n", p[i].nom);
+        printf("Votre prenom: %s\n", p[i].prenom);
+        printf("Votre N de telephon: %d\n", p[i].telephone);
+        printf("Date de reservation: %d/%d/%d\n", p[i].date.jours, p[i].date.mois, p[i].date.annee);
+        printf("Votre statut: %s \n",p[i].statut);
+        printf("Reference: %d\n", p[i].reference);
+        trouveR=1;
+        break;
     }
 
+    }
+     if (!trouveR) {
+        printf("Reference non trouvee\n");
+     }
 
 }
 
@@ -235,7 +261,23 @@ int main() {
                 printf("Fonction de tri non implémentée.\n");
                 break;
             case 5:
-                rechercheR();
+                printf("1-Recherche par referenc.\n");
+                printf("2-Rrecherche par nom.\n");
+                printf("Choix nombre du menu : ");
+                scanf("%d", &choix4);
+                switch (choix4){
+                  case 1:
+                      rechercheR();
+                      break;
+                  case 2:
+                      rechercheN();
+                      break;
+                  default:
+                      printf("Erreur,votre choix n'existe pas \n");
+                      break;
+
+                }
+
                 break;
             case 6:
                 printf("Fonction de statistiques non implémentée.\n");
